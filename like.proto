@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package like;
+
+option go_package = './pb';
+
+message DoLikeReq {
+  string userId = 1;
+
+  // 点赞的目标ID，可以是评论ID，文章ID等
+  string targetId = 2;
+
+  // 点赞的类型，点赞评论、点赞文章等都可以视为点赞的不同类型
+  int32 type = 3;
+
+  // 点赞/取消赞
+  bool liked = 4;
+
+  // 对象所关联的ID，比如评论点赞对应文章ID等
+  string associatedId = 5;
+}
+
+message DoLikeResp {}
+
+message GetUserLikedReq {
+  string userId = 1;
+  string targetId = 2;
+  int32 type = 3;
+}
+
+message GetUserLikedResp {
+  bool liked = 1;
+}
+
+message GetTargetLikesReq {
+  string targetId = 1;
+  int32 type = 2;
+}
+
+message GetTargetLikesResp {
+  int64 count = 1;
+}
+
+service like {
+  // 点赞/取消赞
+  rpc DoLike(DoLikeReq) returns (DoLikeResp) {}
+  // 获取用户是否点赞
+  rpc GetUserLike(GetUserLikedReq) returns (GetUserLikedResp) {}
+  // 获取目标点赞数
+  rpc GetTargetLikes(GetTargetLikesReq) returns (GetTargetLikesResp) {}
+}
