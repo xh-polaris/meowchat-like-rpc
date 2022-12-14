@@ -2,7 +2,7 @@ package logic
 
 import (
 	"context"
-
+	"like-rpc/errorx"
 	"like-rpc/internal/svc"
 	"like-rpc/pb"
 
@@ -23,9 +23,13 @@ func NewGetTargetLikesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 	}
 }
 
-//  获取目标点赞数
+// GetTargetLikes 获取目标点赞数
 func (l *GetTargetLikesLogic) GetTargetLikes(in *pb.GetTargetLikesReq) (*pb.GetTargetLikesResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &pb.GetTargetLikesResp{}, nil
+	likeModel := l.svcCtx.LikeModel
+	count, err := likeModel.GetTargetLikes(l.ctx, in.TargetId, in.Type)
+	if err != nil {
+		return &pb.GetTargetLikesResp{}, errorx.ErrDataBase
+	} else {
+		return &pb.GetTargetLikesResp{Count: count}, nil
+	}
 }

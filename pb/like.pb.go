@@ -28,7 +28,7 @@ type DoLikeReq struct {
 	UserId string `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
 	// 点赞的目标ID，可以是评论ID，文章ID等
 	TargetId string `protobuf:"bytes,2,opt,name=targetId,proto3" json:"targetId,omitempty"`
-	// 点赞的类型，点赞评论、点赞文章等都可以视为点赞的不同类型
+	// 点赞的类型，点赞评论、点赞文章等都可以视为点赞的不同类型（类型常量定义在model.liketypes.go）
 	Type int32 `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
 	// 点赞/取消赞
 	Liked bool `protobuf:"varint,4,opt,name=liked,proto3" json:"liked,omitempty"`

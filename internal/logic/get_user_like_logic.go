@@ -2,7 +2,7 @@ package logic
 
 import (
 	"context"
-
+	"github.com/zeromicro/go-zero/core/stores/monc"
 	"like-rpc/internal/svc"
 	"like-rpc/pb"
 
@@ -23,9 +23,15 @@ func NewGetUserLikeLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetUs
 	}
 }
 
-//  获取用户是否点赞
+// GetUserLike 获取用户是否点赞
 func (l *GetUserLikeLogic) GetUserLike(in *pb.GetUserLikedReq) (*pb.GetUserLikedResp, error) {
-	// todo: add your logic here and delete this line
-
+	likeModel := l.svcCtx.LikeModel
+	err := likeModel.GetUserLike(l.ctx, in.UserId, in.TargetId, in.Type)
+	switch err {
+	case nil:
+		return &pb.GetUserLikedResp{Liked: true}, nil
+	case monc.ErrNotFound:
+		return &pb.GetUserLikedResp{Liked: false}, nil
+	}
 	return &pb.GetUserLikedResp{}, nil
 }
