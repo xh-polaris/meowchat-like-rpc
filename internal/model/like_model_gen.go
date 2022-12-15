@@ -28,7 +28,7 @@ func newDefaultLikeModel(conn *monc.Model) *defaultLikeModel {
 }
 
 func (m *defaultLikeModel) Insert(ctx context.Context, data *Like) error {
-	if !data.ID.IsZero() {
+	if data.ID.IsZero() {
 		data.ID = primitive.NewObjectID()
 		data.CreateAt = time.Now()
 		data.UpdateAt = time.Now()
@@ -46,7 +46,7 @@ func (m *defaultLikeModel) FindOne(ctx context.Context, id string) (*Like, error
 	}
 
 	var data Like
-	key := prefixLikeCacheKey + data.ID.Hex()
+	key := prefixLikeCacheKey + id
 	err = m.conn.FindOne(ctx, key, &data, bson.M{"_id": oid})
 	switch err {
 	case nil:
