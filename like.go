@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"like-rpc/internal/config"
-	"like-rpc/internal/server"
-	"like-rpc/internal/svc"
-	"like-rpc/pb"
+	"github.com/xh-polaris/meowchat-like-rpc/internal/config"
+	"github.com/xh-polaris/meowchat-like-rpc/internal/server"
+	"github.com/xh-polaris/meowchat-like-rpc/internal/svc"
+	"github.com/xh-polaris/meowchat-like-rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

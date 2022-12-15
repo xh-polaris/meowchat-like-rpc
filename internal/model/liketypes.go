@@ -9,6 +9,7 @@ import (
 const TargetTypePost = 1
 const TargetTypeComment = 2
 const TargetTypeCat = 3
+const TargetTypeMoment = 4
 
 type Like struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`

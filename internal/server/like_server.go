@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"like-rpc/internal/logic"
-	"like-rpc/internal/svc"
-	"like-rpc/pb"
+	"github.com/xh-polaris/meowchat-like-rpc/internal/logic"
+	"github.com/xh-polaris/meowchat-like-rpc/internal/svc"
+	"github.com/xh-polaris/meowchat-like-rpc/pb"
 )
 
 type LikeServer struct {

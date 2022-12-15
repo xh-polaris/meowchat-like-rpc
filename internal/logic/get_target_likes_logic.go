@@ -2,9 +2,9 @@ package logic
 
 import (
 	"context"
-	"like-rpc/errorx"
-	"like-rpc/internal/svc"
-	"like-rpc/pb"
+	"github.com/xh-polaris/meowchat-like-rpc/errorx"
+	"github.com/xh-polaris/meowchat-like-rpc/internal/svc"
+	"github.com/xh-polaris/meowchat-like-rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

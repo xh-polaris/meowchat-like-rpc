@@ -1,4 +1,4 @@
-module like-rpc
+module github.com/xh-polaris/meowchat-like-rpc
 
 go 1.18
 

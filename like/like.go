@@ -6,7 +6,7 @@ package like
 import (
 	"context"
 
-	"like-rpc/pb"
+	"github.com/xh-polaris/meowchat-like-rpc/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
