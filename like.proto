@@ -13,11 +13,8 @@ message DoLikeReq {
   // 点赞的类型，点赞评论、点赞文章等都可以视为点赞的不同类型（类型常量定义在like/types.go）
   int64 type = 3;
 
-  // 点赞/取消赞
-  bool liked = 4;
-
   // 对象所关联的ID，比如评论点赞对应文章ID等
-  string associatedId = 5;
+  string associatedId = 4;
 }
 
 message DoLikeResp {}
