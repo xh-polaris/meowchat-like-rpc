@@ -10,8 +10,8 @@ message DoLikeReq {
   // 点赞的目标ID，可以是评论ID，文章ID等
   string targetId = 2;
 
-  // 点赞的类型，点赞评论、点赞文章等都可以视为点赞的不同类型（类型常量定义在model.liketypes.go）
-  int32 type = 3;
+  // 点赞的类型，点赞评论、点赞文章等都可以视为点赞的不同类型（类型常量定义在like/types.go）
+  int64 type = 3;
 
   // 点赞/取消赞
   bool liked = 4;
@@ -25,7 +25,7 @@ message DoLikeResp {}
 message GetUserLikedReq {
   string userId = 1;
   string targetId = 2;
-  int32 type = 3;
+  int64 type = 3;
 }
 
 message GetUserLikedResp {
@@ -34,7 +34,7 @@ message GetUserLikedResp {
 
 message GetTargetLikesReq {
   string targetId = 1;
-  int32 type = 2;
+  int64 type = 2;
 }
 
 message GetTargetLikesResp {
