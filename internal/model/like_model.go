@@ -16,9 +16,9 @@ type (
 	// and implement the added methods in CustomLikeModel.
 	LikeModel interface {
 		likeModel
-		GetUserLike(ctx context.Context, userId string, targetId string, targetType int32) error
-		GetTargetLikes(ctx context.Context, targetId string, targetType int32) (int64, error)
-		GetId(ctx context.Context, userId string, targetId string, targetType int32) (string, error)
+		GetUserLike(ctx context.Context, userId string, targetId string, targetType int64) error
+		GetTargetLikes(ctx context.Context, targetId string, targetType int64) (int64, error)
+		GetId(ctx context.Context, userId string, targetId string, targetType int64) (string, error)
 	}
 
 	CustomLikeModel struct {
@@ -26,14 +26,14 @@ type (
 	}
 )
 
-func (m *CustomLikeModel) GetId(ctx context.Context, userId string, targetId string, targetType int32) (id string, err error) {
+func (m *CustomLikeModel) GetId(ctx context.Context, userId string, targetId string, targetType int64) (id string, err error) {
 	like := Like{}
 	err = m.conn.FindOneNoCache(ctx, &like, bson.M{"userId": userId, "targetId": targetId, "targetType": targetType})
 	id = like.ID.Hex()
 	return
 }
 
-func (m *CustomLikeModel) GetTargetLikes(ctx context.Context, targetId string, targetType int32) (count int64, err error) {
+func (m *CustomLikeModel) GetTargetLikes(ctx context.Context, targetId string, targetType int64) (count int64, err error) {
 	count, err = m.conn.CountDocuments(ctx, bson.M{"targetId": targetId, "targetType": targetType})
 	if err != nil {
 		return 0, err
@@ -42,7 +42,7 @@ func (m *CustomLikeModel) GetTargetLikes(ctx context.Context, targetId string, t
 	}
 }
 
-func (m *CustomLikeModel) GetUserLike(ctx context.Context, userId string, targetId string, targetType int32) (err error) {
+func (m *CustomLikeModel) GetUserLike(ctx context.Context, userId string, targetId string, targetType int64) (err error) {
 	like := Like{}
 	err = m.conn.FindOneNoCache(ctx, &like, bson.M{"userId": userId, "targetId": targetId, "targetType": targetType})
 	return

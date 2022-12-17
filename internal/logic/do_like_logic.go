@@ -40,7 +40,7 @@ func (l *DoLikeLogic) DoLike(in *pb.DoLikeReq) (*pb.DoLikeResp, error) {
 		like := &model.Like{
 			UserId:       in.UserId,
 			TargetId:     in.TargetId,
-			TargetType:   int(in.Type),
+			TargetType:   in.Type,
 			AssociatedId: in.AssociatedId,
 		}
 		err := likeModel.Insert(l.ctx, like)
