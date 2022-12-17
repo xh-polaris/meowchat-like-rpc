@@ -28,4 +28,4 @@ WORKDIR /app
 COPY --from=builder /app/like-rpc /app/like-rpc
 COPY --from=builder /app/etc /app/etc
 
-CMD ["./like-rpc", "-f", "etc/dev.yaml"]
+CMD ["./like-rpc", "-f", "etc/like.yaml"]
