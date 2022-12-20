@@ -61,7 +61,7 @@ func (m *defaultLikeModel) FindOne(ctx context.Context, id string) (*Like, error
 func (m *defaultLikeModel) Update(ctx context.Context, data *Like) error {
 	data.UpdateAt = time.Now()
 	key := prefixLikeCacheKey + data.ID.Hex()
-	_, err := m.conn.ReplaceOne(ctx, key, bson.M{"_id": data.ID}, data)
+	_, err := m.conn.UpdateOne(ctx, key, bson.M{"_id": data.ID}, bson.M{"$set": data})
 	return err
 }
 
